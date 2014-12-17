@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+    <procedures>
+	<procedure name="checkVcard">
+	    <checkcount xpath='//h1[@class="vcard-names"]'>1</checkcount>
+	    <checkcount xpath='//h1[@class="vcard-names"]/.//span[@class="vcard-fullname"]'>1</checkcount>
+	    <checkcount xpath='//h1[@class="vcard-names"]/.//span[@class="vcard-username"]'>1</checkcount>
+	</procedure>
+
+	<procedure name="checkRepositories">
+	    <checkcount xpath='//ul[contains(@class, "mini-repo-list")]'>1</checkcount>
+	    <foreach xpath='//ul[contains(@class, "mini-repo-list")]/li'>
+		<checkcount xpath='//*[contains(@class, "repo-icon")]'>1</checkcount>
+		<checkcount xpath='//*[contains(@class, "repo-and-owner")]'>1</checkcount>
+		<checkcount xpath='//*[contains(@class, "stars")]'>1</checkcount>
+		<checkcount xpath='//*[contains(@class, "repo-description")]'>1</checkcount>
+	    </foreach>
+	</procedure>
+    </procedures>
+    <pages>
+	<url url="/perfect-solutions">
+	    <checks>
+		<call name="checkVcard" />
+		<call name="checkRepositories" />
+	    </checks>
+	</url>
+
+	<url url="/torvalds">
+	    <checks>
+		<call name="checkVcard" />
+		<call name="checkRepositories" />
+	    </checks>
+	</url>
+    </pages>
+</root>

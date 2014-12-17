@@ -1,0 +1,44 @@
+#!/usr/bin/ruby
+
+require './checker.rb'
+
+def help
+    puts "Usage: xwebck --test=checklist.xml --urlbase=http://github.com/"
+end
+
+xml=nil
+base=nil
+
+ARGV.each {|arv|
+    if /^--test=/.match(arv)
+	xml = arv.gsub(/^--test=/, '')
+    end
+    if /^--urlbase=/.match(arv)
+	base = arv.gsub(/^--urlbase=/, '').gsub(/\/$/, '')
+    end
+}
+
+if xml.nil? || base.nil?
+    help
+    exit 1
+end
+
+if xml.empty? || base.empty?
+    help
+    exit 1
+end
+
+if !File.exists?(xml)
+    puts "#{xml}: No such file or directory"
+    exit 2
+end
+
+if !File.file?(xml)
+    puts "#{xml}: Is not a regular file"
+    exit 2
+end
+
+puts "Run for: #{xml} and #{base}"
+
+main(xml, base)
+
