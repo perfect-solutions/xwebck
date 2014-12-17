@@ -3,7 +3,7 @@
 require './checker.rb'
 
 def help
-    puts "Usage: xwebck --test=checklist.xml --urlbase=http://github.com/"
+    puts "Usage: xwebck --test=checklist.xml --urlbase=https://github.com/"
 end
 
 xml=nil
