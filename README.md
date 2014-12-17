@@ -22,3 +22,14 @@ Usage
 
 3. Check Exit code and console output
 
+Integration with CI
+===================
+
+В CI достаточно проверять exit code процесса xwebck для получения результата pass/fail всего теста. Для вывода только ошибок можно перенаправлять вывод в grep, например так:
+
+    ./xwebck --test=checklist.xml --urlbase=https://github.com/ | grep FAIL
+
+Будут выведены только упавшие проверки.
+
+
+
