@@ -1,15 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
+    <!-- процедуры -->
     <procedures>
+	<!-- примитивная проверка vcard -->
 	<procedure name="checkVcard">
 	    <checkcount xpath='//h1[@class="vcard-names"]'>1</checkcount>
 	    <checkcount xpath='//h1[@class="vcard-names"]/.//span[@class="vcard-fullname"]'>1</checkcount>
 	    <checkcount xpath='//h1[@class="vcard-names"]/.//span[@class="vcard-username"]'>1</checkcount>
 	</procedure>
 
+    
+    	<!-- примитивная проверка списка репозиториев -->
 	<procedure name="checkRepositories">
 	    <checkcount xpath='//ul[contains(@class, "mini-repo-list")]'>1</checkcount>
+	    
+	    <!-- проверка каждой строчки с репозиторием -->
 	    <foreach xpath='//ul[contains(@class, "mini-repo-list")]/li'>
+	    	<!-- внутри foreach нода li сама считается документом, можно использовать "//.." в xpath  и поиск будет происходить только внутри этого li -->
 		<checkcount xpath='//*[contains(@class, "repo-icon")]'>1</checkcount>
 		<checkcount xpath='//*[contains(@class, "repo-and-owner")]'>1</checkcount>
 		<checkcount xpath='//*[contains(@class, "stars")]'>1</checkcount>
@@ -17,9 +24,12 @@
 	    </foreach>
 	</procedure>
     </procedures>
+    
+    <!-- страницы, которые проверяем -->
     <pages>
 	<url url="/perfect-solutions">
 	    <checks>
+	        <!-- сюда можно посать как сами проверки, так и процедуры -->
 		<call name="checkVcard" />
 		<call name="checkRepositories" />
 	    </checks>
@@ -27,6 +37,7 @@
 
 	<url url="/torvalds">
 	    <checks>
+	        <!-- сюда можно посать как сами проверки, так и процедуры -->
 		<call name="checkVcard" />
 		<call name="checkRepositories" />
 	    </checks>
