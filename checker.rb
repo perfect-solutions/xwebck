@@ -132,8 +132,6 @@ def automation(command, html)
     end
 end
 
-#main("checklist.xml", "http://sys-alpha.woman.ru")
-
 #main
 def main(file, urlbase)
     script = Nokogiri::XML(File.read(file))
