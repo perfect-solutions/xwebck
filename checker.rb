@@ -16,8 +16,8 @@ def dsuccess
     printf "	SUCCESS\n"
 end
 
-def dfail
-    printf "	FAIL\n"
+def dfail(string=nil)
+    printf "	FAIL	#{string}\n"
     $fails+=1
 end
 
